@@ -2,8 +2,9 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1em;
+  padding: 1.5em;
   min-width: 450px;
+  height: 4em;
 }
 
 nav {
@@ -18,7 +19,7 @@ a {
 
 a:hover {
   text-decoration: underline;
-  color: #595bf6;
+  color: var(--primary-color);
 }
 
 .logo {
