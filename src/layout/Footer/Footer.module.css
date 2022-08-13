@@ -1,0 +1,14 @@
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  min-width: 450px;
+  background-color: black;
+  height: 2.5em;
+}
+
+.logo,
+span {
+  color: white;
+}
