@@ -1,0 +1,26 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+  min-width: 450px;
+}
+
+nav {
+  display: flex;
+  gap: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #595bf6;
+}
+
+.logo {
+  font-family: Intern;
+}
