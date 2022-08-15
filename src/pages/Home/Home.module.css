@@ -1,0 +1,7 @@
+main {
+  width: 1200px;
+  border: 1px solid black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
