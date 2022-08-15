@@ -3,9 +3,11 @@ import styles from './Footer.module.css';
 export default function Footer() {
   return (
     <>
-      <footer>
+      <footer className={styles.footer}>
         <h2 className={styles.logo}>Luma</h2>
-        <span>@2022 Luma. All rights reserved</span>
+        <span className={styles.footerText}>
+          @2022 Luma. All rights reserved
+        </span>
       </footer>
     </>
   );

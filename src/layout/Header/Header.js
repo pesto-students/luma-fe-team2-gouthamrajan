@@ -9,14 +9,14 @@ export default function Header() {
   const [opened, setOpened] = useState(false);
   return (
     <>
-      <header>
+      <header className={styles.header}>
         <Modal opened={opened} setOpened={setOpened}>
           Modal info
         </Modal>
         <h2 className={styles.logo} onClick={() => navigate('/')}>
           Luma
         </h2>
-        <nav>
+        <nav className={styles.nav}>
           <Link to='/experts'>For Experts</Link>
           <Link>Book slot</Link>
           <div onClick={() => setOpened(true)}>Sign In</div>

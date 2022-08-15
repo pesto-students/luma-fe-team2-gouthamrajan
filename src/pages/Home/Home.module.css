@@ -1,7 +1,30 @@
-main {
-  width: 1200px;
-  border: 1px solid black;
-  height: 100vh;
+@import 'open-props/gradients';
+.main {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  color: black;
+  padding: 1.5em;
+}
+
+.heroHeading {
+  font-size: 3em;
+  font-weight: lighter;
+}
+
+.heroImage {
+  display: block;
+}
+
+@media screen and (min-width: 600px) {
+  .heroImage {
+    display: hidden;
+  }
 }
