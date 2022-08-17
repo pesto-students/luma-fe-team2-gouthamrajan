@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Link from '../../components/Link';
-import styles from './Header.module.css';
 import Modal from '../../components/Modal';
+import Login from '../../feature/auth/Login/Login';
+import styles from './Header.module.css';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <Modal opened={opened} setOpened={setOpened}>
-          Modal info
+          <Login />
         </Modal>
         <h2 className={styles.logo} onClick={() => navigate('/')}>
           Luma
@@ -19,7 +20,7 @@ export default function Header() {
         <nav className={styles.nav}>
           <Link to='/experts'>For Experts</Link>
           <Link>Book slot</Link>
-          <div onClick={() => setOpened(true)}>Sign In</div>
+          <Link to='/login'>Sign In</Link>
         </nav>
       </header>
     </>

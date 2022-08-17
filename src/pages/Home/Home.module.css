@@ -21,9 +21,3 @@
 .heroImage {
   display: block;
 }
-
-@media screen and (min-width: 600px) {
-  .heroImage {
-    display: hidden;
-  }
-}
