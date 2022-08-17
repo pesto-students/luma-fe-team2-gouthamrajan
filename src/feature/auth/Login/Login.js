@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button } from '@mantine/core';
-import styles from './Login.module.css';
 import { useNavigate } from 'react-router-dom';
+import styles from './Login.module.css';
+import Link from '../../../components/Link';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -17,8 +18,9 @@ export default function Login() {
           <Button onClick={() => navigate('/email-login')}>
             Continue with Email
           </Button>
+          <Link to='/signup'>Don't have an account? Create One.</Link>
           <p>
-            By continuing, you agree to Canva's Terms of Use. Read our Privacy
+            By continuing, you agree to Luma's Terms of Use. Read our Privacy
             Policy.
           </p>
         </div>
