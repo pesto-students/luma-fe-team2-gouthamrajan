@@ -15,10 +15,6 @@ export default function ForgotPassword() {
           <p>
             Don’t worry, we’ll send you a email to help you reset your password
           </p>
-          {/* <div>
-            <label for='email'>Email</label>
-            <input type='text' placeholder='Enter your email' id='email' />
-          </div> */}
           <Input.Wrapper label='Email'>
             <Input placeholder='Enter your email' />
           </Input.Wrapper>
