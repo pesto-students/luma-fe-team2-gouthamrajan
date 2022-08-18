@@ -6,6 +6,7 @@ import EmailLogin from './feature/auth/EmailLogin/EmailLogin';
 import ForgotPassword from './feature/auth/ForgotPassword/ForgotPassword';
 import ConfirmCode from './feature/auth/ConfrimCode/ConfirmCode';
 import Signup from './feature/auth/Signup/Signup';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/confirm-code' element={<ConfirmCode />} />
         <Route path='/signup' element={<Signup />} />
+
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
   );
