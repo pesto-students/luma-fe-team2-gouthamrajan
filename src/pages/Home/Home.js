@@ -19,6 +19,7 @@ export default function Home() {
                 adipiscing elit. Nunc vulputate libero et.
               </p>
             </div>
+
             <Image
               src='/hero-image.webp'
               alt='turned on black and gray laptop'
