@@ -9,8 +9,8 @@ export default function Login() {
   const navigate = useNavigate();
 
   const logGoogleUser = async () => {
-    const response = await signInWithGooglePopup();
-    console.log(response);
+    await signInWithGooglePopup();
+    navigate('/');
   };
 
   return (

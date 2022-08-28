@@ -1,16 +1,34 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { Button, Input } from '@mantine/core';
 import Link from '../../../components/Link';
+import { useAuth } from '../../../context/AuthContext';
+import { Alert } from '@mantine/core';
+import { useNavigate } from 'react-router-dom';
 import styles from './EmailLogin.module.css';
 
 export default function EmailLogin() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const resetForm = () => {};
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     //login
+    try {
+      setError('');
+      setLoading(true);
+      await login(email, password);
+      navigate('/');
+    } catch (error) {
+      setError('Failed to log in');
+    }
+    setLoading(false);
   };
 
   return (
@@ -18,17 +36,33 @@ export default function EmailLogin() {
       <div className={styles.container}>
         <div className={styles.card}>
           <h2>Login into your account</h2>
-          <Input.Wrapper label='Email'>
-            <Input placeholder='Enter your email' type='email' ref={emailRef} />
-          </Input.Wrapper>
-          <Input.Wrapper label='Password'>
-            <Input
-              placeholder='Enter your password'
-              type='password'
-              passwordRef={passwordRef}
-            />
-          </Input.Wrapper>
-          <Button type='submit'>Login</Button>
+          <form onSubmit={handleSubmit}>
+            {error && (
+              <Alert color='red' variant='outline'>
+                {error}
+              </Alert>
+            )}
+            <Input.Wrapper label='Email'>
+              <Input
+                placeholder='Enter your email'
+                type='email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Input.Wrapper>
+            <Input.Wrapper label='Password'>
+              <Input
+                placeholder='Enter your password'
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Input.Wrapper>
+            <br />
+            <Button type='submit' disabled={loading}>
+              Login
+            </Button>
+          </form>
           <Link to='/forgot-password'>Forgot Password?</Link>
         </div>
       </div>

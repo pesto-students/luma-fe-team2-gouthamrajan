@@ -56,11 +56,13 @@ export default function Home() {
                 </p>
               </div>
             </div>
+
             <Image
               src='/home-section-2.webp'
               alt='pens and ruler on paper'
               fit='contain'
               radius='md'
+              width={900}
             />
           </section>
           <section className='section-3 section-center'>

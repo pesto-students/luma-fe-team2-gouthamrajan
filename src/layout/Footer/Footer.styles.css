@@ -8,3 +8,10 @@ footer {
   justify-content: space-between;
   padding: 1.5rem 0;
 }
+
+/* Duplicate style from header */
+.logo {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-500);
+  cursor: pointer;
+}

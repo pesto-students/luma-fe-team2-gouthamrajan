@@ -17,5 +17,6 @@
 
 .logo {
   font-weight: var(--fw-bold);
-  font-size: var(--);
+  font-size: var(--fs-500);
+  cursor: pointer;
 }

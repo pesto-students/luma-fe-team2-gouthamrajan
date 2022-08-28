@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 
 //setting up firebase
@@ -33,18 +34,32 @@ export const auth = getAuth();
 
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
-//email and password authentication
+//auth state change listener
+export const onAuthStateChangedListener = (callback) => {
+  if (!callback) return;
+  onAuthStateChanged(auth, callback);
+};
+
+//create user with email and password
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
+//login
+export const loginWithEmailAndPassword = async (email, password) => {
+  if (!email || !password) return;
+
+  return await signInWithEmailAndPassword(auth, email, password);
+};
+
 //sign out
 export const signOutUser = async () => await signOut(auth);
 
-//auth state change listener
-export const onAuthStateChangedListener = (callback) => {
-  if (!callback) return;
-  onAuthStateChanged(auth, callback);
+//reset password
+export const sendEmailForPasswordReset = async (email) => {
+  if (!email) return;
+
+  return sendPasswordResetEmail(auth, email);
 };

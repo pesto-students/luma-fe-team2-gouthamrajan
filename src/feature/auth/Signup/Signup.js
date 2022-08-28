@@ -2,22 +2,23 @@ import React, { useRef, useState } from 'react';
 import styles from './Signup.module.css';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
-import { createAuthUserWithEmailAndPassword } from '../../../lib/firebase';
 import { useAuth } from '../../../context/AuthContext';
+import { Alert } from '@mantine/core';
 
 export default function Signup() {
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const confirmPasswordRef = useRef();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-  const { signup } = useAuth();
   const [loading, setLoading] = useState(false);
+  const { signup } = useAuth();
 
   const resetForm = () => {};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (passwordRef.current.value !== confirmPasswordRef.current.value) {
+    if (password !== confirmPassword) {
       return setError('Passwords do not match');
     }
 
@@ -25,17 +26,15 @@ export default function Signup() {
     try {
       setError('');
       setLoading(true);
-      const response = await createAuthUserWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
-      );
-      console.log(response);
+      await signup(email, password);
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         setError('Email is already in use');
+      } else {
+        setError('Failed to sign in');
       }
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   return (
@@ -43,27 +42,48 @@ export default function Signup() {
       <div className={styles.container}>
         <div className={styles.card}>
           <h2 className={styles.heading}>Create your account</h2>
-          {error && <span>{error}</span>}
+          {error && (
+            <Alert color='red' variant='outline'>
+              {error}
+            </Alert>
+          )}
           <form onSubmit={handleSubmit}>
+            <Input
+              label='Name'
+              placeholder='Enter your name'
+              type='text'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
             <Input
               label='Email'
               placeholder='Enter your email'
               type='email'
-              ref={emailRef}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <Input
               label='Password'
               placeholder='Enter your password'
               type='password'
-              ref={passwordRef}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <Input
               label='Confirm Password'
               placeholder='Enter your password'
               type='password'
-              ref={confirmPasswordRef}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
             />
-            <Button type='submit'>Signup</Button>
+            <br />
+            <Button type='submit' disabled={loading}>
+              Signup
+            </Button>
           </form>
         </div>
       </div>
