@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
-import Experts from './pages/Experts';
 import Login from './feature/auth/Login/Login';
+import Expert from './pages/Expert/Expert';
 import EmailLogin from './feature/auth/EmailLogin/EmailLogin';
 import ForgotPassword from './feature/auth/ForgotPassword/ForgotPassword';
 import ConfirmCode from './feature/auth/ConfrimCode/ConfirmCode';
@@ -13,7 +13,7 @@ function App() {
     <div className='App'>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/experts' element={<Experts />} />
+        <Route path='/experts' element={<Expert />} />
         <Route path='/login' element={<Login />} />
         <Route path='/email-login' element={<EmailLogin />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
