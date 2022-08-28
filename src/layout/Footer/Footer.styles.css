@@ -1,0 +1,10 @@
+footer {
+  background-color: var(--footer-color);
+  color: white;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+}

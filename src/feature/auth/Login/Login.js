@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 import Link from '../../../components/Link';
+import Button from '../../../components/Button';
 import { signInWithGooglePopup } from '../../../lib/firebase';
 
 export default function Login() {
@@ -17,10 +17,16 @@ export default function Login() {
     <>
       <div className={styles.container}>
         <div className={styles.card}>
-          <h2>Login in or sign up in</h2>
+          <h2 className={styles.heading}>Login in or sign up in</h2>
           <p>Use your email or google account to continue with Luma</p>
 
-          <Button onClick={logGoogleUser}>Continue with Google</Button>
+          <Button
+            onClick={logGoogleUser}
+            variant='gradient'
+            gradient={{ from: 'teal', to: 'blue', deg: 60 }}
+          >
+            Continue with Google
+          </Button>
           <Button onClick={() => navigate('/email-login')}>
             Continue with Email
           </Button>

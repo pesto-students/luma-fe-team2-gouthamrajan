@@ -20,3 +20,11 @@
 .card > * {
   flex-basis: 3em;
 }
+
+.heading {
+  font-size: var(--fs-heading);
+}
+
+button[class^='mantine'] {
+  background-color: var(--primary-color);
+}
