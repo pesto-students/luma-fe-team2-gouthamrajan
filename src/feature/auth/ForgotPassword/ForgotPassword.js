@@ -49,7 +49,7 @@ export default function ForgotPassword() {
               label='Email'
               placeholder='Enter your email'
               value={email}
-              onChage={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Button type='submit' disabled={loading}>
               Reset Password

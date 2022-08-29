@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import Link from '../../components/Link';
@@ -7,6 +8,19 @@ import './Header.styles.css';
 export default function Header() {
   const navigate = useNavigate();
   const { currentUser, logout } = useAuth();
+  const [error, setError] = useState('');
+
+  const handleLogout = async () => {
+    setError('');
+
+    try {
+      await logout();
+      navigate('login');
+    } catch (error) {
+      setError('Failed to logout');
+    }
+  };
+
   return (
     <>
       <header className='header'>
@@ -23,13 +37,14 @@ export default function Header() {
               <li className='navbar-item'>
                 <Link>Book slot</Link>
               </li>
+
               {currentUser ? (
                 <li className='navbar-item'>
-                  <Link to='/login'>Sign In</Link>
+                  <Button onClick={handleLogout}>Log out</Button>
                 </li>
               ) : (
                 <li className='navbar-item'>
-                  <a onClick={() => logout()}>Sign Out</a>
+                  <Button onClick={() => navigate('/login')}>Sign In</Button>
                 </li>
               )}
             </ul>
