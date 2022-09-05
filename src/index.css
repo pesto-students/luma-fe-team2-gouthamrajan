@@ -95,7 +95,8 @@ svg {
   */
   --primary-color: #595bf6;
   --secondary-color: #eeeffe;
-  --footer-color: #333;
+  --accent-color: #c1c2f6;
+  --footer-color: black;
 
   /*
     typography
