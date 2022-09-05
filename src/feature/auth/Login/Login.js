@@ -4,14 +4,24 @@ import styles from './Login.module.css';
 import Link from '../../../components/Link';
 import Button from '../../../components/Button';
 import { signInWithGooglePopup } from '../../../lib/firebase';
+import { useEffect } from 'react';
+import { useAuth } from '../../../context/AuthContext';
 
 export default function Login() {
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
 
   const logGoogleUser = async () => {
     await signInWithGooglePopup();
     navigate('/');
   };
+
+  //redirect to home if already logged in
+  useEffect(() => {
+    if (currentUser !== null) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <>
