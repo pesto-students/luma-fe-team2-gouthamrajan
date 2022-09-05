@@ -1,5 +1,4 @@
-import { Modal as ModalM, Group, Button, Center } from '@mantine/core';
-import { useState } from 'react';
+import { Modal as ModalM, Center } from '@mantine/core';
 
 export default function Modal({ children, opened, setOpened }) {
   return (

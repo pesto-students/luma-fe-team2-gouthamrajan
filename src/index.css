@@ -1,36 +1,6 @@
-:root {
-  --primary-color: #595bf6;
-  --secondary-color: #eeeffe;
-
-  --ff-primary: Inter, san-serif;
-  --ff-body: var(--ff-primary);
-  --ff-heading: var(--ff-primary);
-
-  --fw-regular: 400;
-  --fw-bold: 600;
-
-  --fs-400: 1rem;
-  --fs-500: 1.25rem;
-  --fs-600: 2rem;
-
-  --fs-body: var(--fs-400);
-  --fs-button: var(--fs-500);
-  --fs-heading: var(--fs-600);
-}
-
-.App {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 100vw;
-  padding: 0 1.5em;
-}
-
-@media (min-width: 50em) {
-  :root {
-    --fs-600: 3rem;
-  }
-}
+/*
+  CSS Reset
+*/
 
 /* Box sizing rules */
 *,
@@ -61,7 +31,7 @@ html:focus-within {
 body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
-  line-height: 1.5;
+  line-height: 1.75;
 }
 
 /* A elements that don't have a class get default styles */
@@ -91,4 +61,92 @@ svg {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/*
+  scrollbar styling
+*/
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  /* background-color: hsl(0, 0%, 95%); */
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(0, 0%, 70%);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(0, 0%, 40%);
+}
+
+/*
+  css variables declarations
+*/
+
+:root {
+  /*
+    colors
+  */
+  --primary-color: #595bf6;
+  --secondary-color: #eeeffe;
+  --footer-color: #333;
+
+  /*
+    typography
+  */
+
+  --ff-primary: 'Inter', san-serif;
+  --ff-body: var(--ff-primary);
+  --ff-heading: var(--ff-primary);
+
+  --fw-regular: 400;
+  --fw-bold: 600;
+
+  --fs-400: 1rem;
+  --fs-500: 1.25rem;
+  --fs-600: 2rem;
+
+  --fs-body: var(--fs-400);
+  --fs-button: var(--fs-500);
+  --fs-heading: var(--fs-600);
+}
+
+@media (min-width: 50em) {
+  :root {
+    --fs-600: 3rem;
+  }
+}
+
+/*
+  general styling
+*/
+
+.container {
+  --max-width: 1280px;
+  --side-padding: 2rem;
+
+  width: min(100% - var(--side-padding), var(--max-width));
+  margin-inline: auto;
+}
+
+body {
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  color: black;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-block-start: auto;
 }

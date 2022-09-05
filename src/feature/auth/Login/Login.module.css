@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5em;
+  width: 30em;
+  padding: 2.5em;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+}
+
+.card > * {
+  flex-basis: 3em;
+}
+
+.heading {
+  font-size: var(--fs-heading);
+}
+
+button[class^='mantine'] {
+  background-color: var(--primary-color);
+}
