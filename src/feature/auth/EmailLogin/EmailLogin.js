@@ -35,7 +35,7 @@ export default function EmailLogin() {
     <>
       <div className={styles.container}>
         <div className={styles.card}>
-          <h2>Login into your account</h2>
+          <h2 className={styles.heading}>Login into your account</h2>
           <form onSubmit={handleSubmit}>
             {error && (
               <Alert color='red' variant='outline'>
@@ -56,9 +56,9 @@ export default function EmailLogin() {
                 type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                style={{ paddingBlockEnd: '1em' }}
               />
             </Input.Wrapper>
-            <br />
             <Button type='submit' disabled={loading}>
               Login
             </Button>

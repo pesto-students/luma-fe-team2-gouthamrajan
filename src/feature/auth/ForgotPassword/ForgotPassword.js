@@ -30,7 +30,7 @@ export default function ForgotPassword() {
     <>
       <div className={styles.container}>
         <div className={styles.card}>
-          <h2>Forgotten your Password?</h2>
+          <h2 className={styles.heading}>Forgotten your Password?</h2>
           <p>
             Don’t worry, we’ll send you a email to help you reset your password
           </p>
@@ -50,6 +50,7 @@ export default function ForgotPassword() {
               placeholder='Enter your email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              style={{ paddingBlockEnd: '1em' }}
             />
             <Button type='submit' disabled={loading}>
               Reset Password

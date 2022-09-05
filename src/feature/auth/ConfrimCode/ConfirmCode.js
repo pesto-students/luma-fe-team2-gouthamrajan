@@ -9,8 +9,14 @@ export default function ConfirmCode() {
       <div className={styles.container}>
         <div className={styles.card}>
           <h2>Let us know it’s you</h2>
-          <p>Last step! To secure your accout, enter the code just sent you.</p>
-          <Input label='Email' placeholder='Enter your email' />
+          <p>
+            Last step! To secure your account, enter the code just sent you.
+          </p>
+          <Input
+            label='Email'
+            placeholder='Enter your email'
+            style={{ paddingBlockEnd: '1em' }}
+          />
           <Button>Continue</Button>
         </div>
       </div>
