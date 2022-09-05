@@ -14,12 +14,14 @@ export default function NotFound() {
           height: '80vh',
         }}
       >
-        <Image
-          src='/404.svg'
-          alt='pens and ruler on paper'
-          fit='contain'
-          radius='md'
-        />
+        <div style={{ width: 1020 }}>
+          <Image
+            src='/404.svg'
+            alt='pens and ruler on paper'
+            fit='contain'
+            radius='md'
+          />
+        </div>
       </main>
       <Footer />
     </>
