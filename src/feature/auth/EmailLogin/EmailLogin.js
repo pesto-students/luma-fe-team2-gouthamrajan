@@ -14,7 +14,7 @@ export default function EmailLogin() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const resetForm = () => {};
+  // const resetForm = () => {};
 
   const handleSubmit = async (e) => {
     e.preventDefault();

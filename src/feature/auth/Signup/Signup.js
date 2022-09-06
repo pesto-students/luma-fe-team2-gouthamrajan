@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styles from './Signup.module.css';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
@@ -14,7 +14,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const { signup } = useAuth();
 
-  const resetForm = () => {};
+  // const resetForm = () => {};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
