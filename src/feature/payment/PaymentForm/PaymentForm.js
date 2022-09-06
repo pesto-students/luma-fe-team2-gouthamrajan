@@ -69,10 +69,13 @@ export default function PaymentForm() {
       <Header />
       <div className={styles.mainContainer}>
         <div className={styles.checkoutContainer}>
-          <h1>Checkout</h1>
-          <h2>Credit Card Payment :</h2>
-          <form onSubmit={paymentHandler}>
+          <h1 className={styles.heading}>Checkout</h1>
+          <h2 style={{ fontWeight: 'var(--fw-bold)' }}>
+            Credit Card Payment :
+          </h2>
+          <form onSubmit={paymentHandler} className={styles.form}>
             <CardElement />
+            <div style={{ marginBlockEnd: '1em' }}></div>
             <Button type='submit' disabled={loading}>
               Pay Now
             </Button>
