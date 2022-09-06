@@ -1,0 +1,14 @@
+.mainContainer {
+  display: flex;
+  /* min-height: 80vh; */
+  place-content: center;
+}
+
+.checkoutContainer {
+  display: grid;
+  background-color: aliceblue;
+  width: min(100% - 2rem, 450px);
+  border-radius: 10px;
+  gap: 1em;
+  margin-block-start: calc(20vh);
+}

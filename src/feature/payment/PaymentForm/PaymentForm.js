@@ -3,6 +3,9 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import Button from '../../../components/Button';
 import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import Header from '../../../layout/Header/Header';
+import Footer from '../../../layout/Footer/Footer';
+import styles from './PaymentForm.module.css';
 
 export default function PaymentForm() {
   const stripe = useStripe();
@@ -62,14 +65,21 @@ export default function PaymentForm() {
   };
 
   return (
-    <div>
-      <h2>Credit Card Payment :</h2>
-      <form onSubmit={paymentHandler}>
-        <CardElement />
-        <Button type='submit' disabled={loading}>
-          Pay Now
-        </Button>
-      </form>
-    </div>
+    <>
+      <Header />
+      <div className={styles.mainContainer}>
+        <div className={styles.checkoutContainer}>
+          <h1>Checkout</h1>
+          <h2>Credit Card Payment :</h2>
+          <form onSubmit={paymentHandler}>
+            <CardElement />
+            <Button type='submit' disabled={loading}>
+              Pay Now
+            </Button>
+          </form>
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 }
