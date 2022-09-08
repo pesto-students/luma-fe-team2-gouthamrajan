@@ -4,9 +4,11 @@ import Header from '../../layout/Header/Header';
 import { NativeSelect } from '@mantine/core';
 import styles from './Experts.module.css';
 import Button from '../../components/Button';
+import { useNavigate } from 'react-router-dom';
 
 export default function Expert() {
   const { currentUser } = useAuth();
+  const navigate = useNavigate();
   return (
     <>
       <Header />
@@ -14,6 +16,9 @@ export default function Expert() {
         <div className='container'>
           {currentUser && currentUser.email && (
             <h1>Hello {currentUser.email}</h1>
+          )}
+          {currentUser && currentUser.displayName && (
+            <h1>Hello {currentUser.displayName}</h1>
           )}
           <p>Book your slots with the experts</p>
           <div className={styles.searchBox}>
@@ -45,7 +50,9 @@ export default function Expert() {
               <div className={styles.slot}>
                 <p className={styles.time}>6:00pm - 6:30pm</p>
                 <p className={styles.date}>30 Jul 2022 (Saturday)</p>
-                <Button>Book a slot</Button>
+                <Button onClick={() => navigate('/payment')}>
+                  Book a slot
+                </Button>
               </div>
             </div>
             <div className={styles.expertCard}>

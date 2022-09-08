@@ -4,7 +4,7 @@ import Login from './feature/auth/Login/Login';
 import Expert from './pages/Expert/Expert';
 import EmailLogin from './feature/auth/EmailLogin/EmailLogin';
 import ForgotPassword from './feature/auth/ForgotPassword/ForgotPassword';
-import ConfirmCode from './feature/auth/ConfrimCode/ConfirmCode';
+import ResetPassword from './feature/auth/ResetPassword/ResetPassword';
 import Signup from './feature/auth/Signup/Signup';
 import NotFound from './pages/NotFound';
 import PaymentForm from './feature/payment/PaymentForm/PaymentForm';
@@ -19,7 +19,7 @@ function App() {
         <Route path='/experts' element={<Expert />} />
         <Route path='/email-login' element={<EmailLogin />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/confirm-code' element={<ConfirmCode />} />
+        <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/payment' element={<PaymentForm />} />
 
         <Route path='*' element={<NotFound />} />

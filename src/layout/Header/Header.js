@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Avatar, Menu } from '@mantine/core';
 import Button from '../../components/Button';
-import Link from '../../components/Link';
 import { useAuth } from '../../context/AuthContext';
 import './Header.styles.css';
 
@@ -15,7 +15,7 @@ export default function Header() {
 
     try {
       await logout();
-      navigate('login');
+      navigate('/login');
     } catch (error) {
       setError('Failed to logout');
     }
@@ -31,17 +31,39 @@ export default function Header() {
 
           <nav className='navbar'>
             <ul role='list' className='nav-list'>
-              <li className='navbar-item'>
-                <Link to='/experts'>For Experts</Link>
-              </li>
-              <li className='navbar-item'>
+              {/* <li className='navbar-item'>
                 <Link>Book slot</Link>
+              </li> */}
+              <li className='navbar-item'>
+                <Button onClick={() => navigate('/experts')}>
+                  Book a slot
+                </Button>
               </li>
 
               {currentUser ? (
-                <li className='navbar-item'>
-                  <Button onClick={handleLogout}>Log out</Button>
-                </li>
+                <>
+                  <Menu>
+                    <Menu.Target>
+                      <Avatar
+                        color='violet'
+                        radius='xl'
+                        variant='light'
+                        style={{ cursor: 'pointer' }}
+                      >
+                        {currentUser.email.slice(0, 1).toUpperCase()}
+                      </Avatar>
+                    </Menu.Target>
+                    <Menu.Dropdown>
+                      <Menu.Item onClick={() => navigate('/reset-password')}>
+                        Change Password
+                      </Menu.Item>
+                      <Menu.Item onClick={handleLogout}>Log out</Menu.Item>
+                    </Menu.Dropdown>
+                  </Menu>
+                  {/* <li className='navbar-item'>
+                    <Button onClick={handleLogout}>Log out</Button>
+                  </li> */}
+                </>
               ) : (
                 <li className='navbar-item'>
                   <Button onClick={() => navigate('/login')}>Sign In</Button>

@@ -3,6 +3,7 @@ import styles from './Signup.module.css';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
 import { useAuth } from '../../../context/AuthContext';
+import Link from '../../../components/Link';
 import { Alert } from '@mantine/core';
 
 export default function Signup() {
@@ -47,7 +48,7 @@ export default function Signup() {
               {error}
             </Alert>
           )}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className={styles.form}>
             <Input
               label='Name'
               placeholder='Enter your name'
@@ -80,10 +81,10 @@ export default function Signup() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            <br />
             <Button type='submit' disabled={loading}>
               Signup
             </Button>
+            <Link to='/login'>Already have an account? Login.</Link>
           </form>
         </div>
       </div>

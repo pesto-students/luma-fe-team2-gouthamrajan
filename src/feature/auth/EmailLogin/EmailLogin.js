@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Input } from '@mantine/core';
+import { Input } from '@mantine/core';
 import Link from '../../../components/Link';
+import Button from '../../../components/Button';
 import { useAuth } from '../../../context/AuthContext';
 import { Alert } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
@@ -36,7 +37,7 @@ export default function EmailLogin() {
       <div className={styles.container}>
         <div className={styles.card}>
           <h2 className={styles.heading}>Login into your account</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className={styles.form}>
             {error && (
               <Alert color='red' variant='outline'>
                 {error}
@@ -48,6 +49,7 @@ export default function EmailLogin() {
                 type='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </Input.Wrapper>
             <Input.Wrapper label='Password'>
@@ -57,13 +59,15 @@ export default function EmailLogin() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 style={{ paddingBlockEnd: '1em' }}
+                required
               />
             </Input.Wrapper>
             <Button type='submit' disabled={loading}>
               Login
             </Button>
+            <Link to='/forgot-password'>Forgot Password?</Link>
+            <Link to='/login'>Go back</Link>
           </form>
-          <Link to='/forgot-password'>Forgot Password?</Link>
         </div>
       </div>
     </>

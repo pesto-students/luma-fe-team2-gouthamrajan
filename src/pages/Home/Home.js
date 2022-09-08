@@ -3,8 +3,11 @@ import Footer from '../../layout/Footer/Footer';
 import { Image } from '@mantine/core';
 import Button from '../../components/Button';
 import './Home.styles.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
     <>
       <Header />
@@ -106,7 +109,7 @@ export default function Home() {
               <h1 className='hero-heading'>
                 Join the rapidly growing community
               </h1>
-              <Button>Book a slot</Button>
+              <Button onClick={() => navigate('/experts')}>Book a slot</Button>
             </div>
             {/* <Image
               src='/last-section.webp'

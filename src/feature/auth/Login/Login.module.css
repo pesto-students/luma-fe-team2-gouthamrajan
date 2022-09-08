@@ -25,6 +25,6 @@
   font-size: var(--fs-heading);
 }
 
-button[class^='mantine'] {
+/* button[class^='mantine'] {
   background-color: var(--primary-color);
-}
+} */

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Alert } from '@mantine/core';
 import Input from '../../../components/Input';
 import Button from '../../../components/Button';
-import styles from './ForgotPassword.module.css';
+import styles from './ResetPassword.module.css';
 import { useAuth } from '../../../context/AuthContext';
 import Link from '../../../components/Link';
 
-export default function ForgotPassword() {
+export default function ResetPassword() {
   const [email, setEmail] = useState();
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
@@ -32,7 +32,7 @@ export default function ForgotPassword() {
     <>
       <div className={styles.container}>
         <div className={styles.card}>
-          <h2 className={styles.heading}>Forgotten your Password?</h2>
+          <h2 className={styles.heading}>Reset your password</h2>
           <p>
             Don’t worry, we’ll send you a email to help you reset your password
           </p>
@@ -59,7 +59,7 @@ export default function ForgotPassword() {
             <Button type='submit' disabled={loading}>
               Reset Password
             </Button>
-            <Link to='/email-login'>Go back</Link>
+            <Link to='/'>Go back</Link>
           </form>
         </div>
       </div>

@@ -20,3 +20,8 @@
 .heading {
   font-size: var(--fs-heading);
 }
+
+.form {
+  display: grid;
+  gap: 1em;
+}
