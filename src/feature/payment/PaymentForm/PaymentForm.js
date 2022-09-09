@@ -64,9 +64,8 @@ export default function PaymentForm() {
     setLoading(false);
 
     if (paymentResult.error) {
-      alert(paymentResult.error.message);
       toast({
-        title: 'Something went wrong. Please try again.',
+        title: paymentResult.error.message,
         position: 'top',
         status: 'warning',
         isClosable: true,
