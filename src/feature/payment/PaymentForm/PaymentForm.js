@@ -21,7 +21,15 @@ export default function PaymentForm() {
 
     //if user is not logged in, redirect to login
     if (currentUser === null) {
-      navigate('/login');
+      // navigate('/login');
+      toast({
+        title: 'Please login for payment',
+        position: 'top',
+        variant: 'subtle',
+        isClosable: true,
+        status: 'warning',
+      });
+      return;
     }
 
     if (!stripe || !elements) {
@@ -56,18 +64,20 @@ export default function PaymentForm() {
     setLoading(false);
 
     if (paymentResult.error) {
-      alert(paymentResult.error);
+      alert(paymentResult.error.message);
       toast({
-        title: paymentResult.error,
+        title: 'Something went wrong. Please try again.',
         position: 'top',
+        status: 'warning',
         isClosable: true,
       });
     } else {
       if (paymentResult.paymentIntent.status === 'succeeded') {
-        alert('payment successful');
         toast({
-          title: 'payment successful',
+          title: 'Payment successful.',
+          description: 'Check your slots.',
           position: 'top',
+          status: 'success',
           isClosable: true,
         });
       }

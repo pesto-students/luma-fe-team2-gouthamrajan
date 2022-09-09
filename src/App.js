@@ -7,7 +7,6 @@ import ForgotPassword from './feature/auth/ForgotPassword/ForgotPassword';
 import ResetPassword from './feature/auth/ResetPassword/ResetPassword';
 import Signup from './feature/auth/Signup/Signup';
 import NotFound from './pages/NotFound';
-import PaymentForm from './feature/payment/PaymentForm/PaymentForm';
 import PaymentPage from './feature/payment/PaymentPage/PaymentPage';
 
 function App() {
