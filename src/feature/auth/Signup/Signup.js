@@ -5,6 +5,7 @@ import Button from '../../../components/Button';
 import { useAuth } from '../../../context/AuthContext';
 import Link from '../../../components/Link';
 import { Alert } from '@mantine/core';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
   const [name, setName] = useState('');
@@ -14,6 +15,7 @@ export default function Signup() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { signup } = useAuth();
+  const navigate = useNavigate();
 
   // const resetForm = () => {};
 
@@ -28,6 +30,7 @@ export default function Signup() {
       setError('');
       setLoading(true);
       await signup(email, password);
+      navigate('/');
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         setError('Email is already in use');

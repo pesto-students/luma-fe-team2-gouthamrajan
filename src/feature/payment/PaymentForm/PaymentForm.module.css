@@ -1,20 +1,18 @@
-.mainContainer {
-  display: flex;
-  /* min-height: 80vh; */
-  place-content: center;
-}
-
 .checkoutContainer {
   display: grid;
-  background-color: aliceblue;
+  background-color: var(--secondary-color);
   width: min(100% - 2rem, 450px);
   border-radius: 10px;
   gap: 1em;
-  margin-block-start: 20vh;
+  /* margin-block-start: 20vh; */
   padding: 2em;
 }
 
 .heading {
   font-weight: var(--fw-bold);
   font-size: var(--fs-heading);
+}
+
+.form {
+  display: grid;
 }

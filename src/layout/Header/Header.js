@@ -39,6 +39,9 @@ export default function Header() {
                   Book a slot
                 </Button>
               </li>
+              <li className='navbar-item'>
+                <Button onClick={() => navigate('/my-slots')}>My slots</Button>
+              </li>
 
               {currentUser ? (
                 <>
@@ -54,15 +57,15 @@ export default function Header() {
                       </Avatar>
                     </Menu.Target>
                     <Menu.Dropdown>
+                      <Menu.Item onClick={() => navigate('/my-slot')}>
+                        My Slots
+                      </Menu.Item>
                       <Menu.Item onClick={() => navigate('/reset-password')}>
                         Change Password
                       </Menu.Item>
                       <Menu.Item onClick={handleLogout}>Log out</Menu.Item>
                     </Menu.Dropdown>
                   </Menu>
-                  {/* <li className='navbar-item'>
-                    <Button onClick={handleLogout}>Log out</Button>
-                  </li> */}
                 </>
               ) : (
                 <li className='navbar-item'>
@@ -70,7 +73,6 @@ export default function Header() {
                 </li>
               )}
             </ul>
-            {/* <Button className='button'>Login</Button> */}
           </nav>
         </div>
       </header>

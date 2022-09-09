@@ -3,13 +3,13 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import Button from '../../../components/Button';
 import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import Header from '../../../layout/Header/Header';
-import Footer from '../../../layout/Footer/Footer';
 import styles from './PaymentForm.module.css';
+import { useToast } from '@chakra-ui/react';
 
 export default function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
+  const toast = useToast();
 
   const { currentUser } = getAuth();
   const navigate = useNavigate();
@@ -57,32 +57,36 @@ export default function PaymentForm() {
 
     if (paymentResult.error) {
       alert(paymentResult.error);
+      toast({
+        title: paymentResult.error,
+        position: 'top',
+        isClosable: true,
+      });
     } else {
       if (paymentResult.paymentIntent.status === 'succeeded') {
         alert('payment successful');
+        toast({
+          title: 'payment successful',
+          position: 'top',
+          isClosable: true,
+        });
       }
     }
   };
 
   return (
     <>
-      <Header />
-      <div className={styles.mainContainer}>
-        <div className={styles.checkoutContainer}>
-          <h1 className={styles.heading}>Checkout</h1>
-          <h2 style={{ fontWeight: 'var(--fw-bold)' }}>
-            Credit Card Payment :
-          </h2>
-          <form onSubmit={paymentHandler} className={styles.form}>
-            <CardElement />
-            <div style={{ marginBlockEnd: '1em' }}></div>
-            <Button type='submit' disabled={loading}>
-              Pay Now
-            </Button>
-          </form>
-        </div>
+      <div className={styles.checkoutContainer}>
+        <h1 className={styles.heading}>Checkout</h1>
+        <h2 style={{ fontWeight: 'var(--fw-bold)' }}>Credit Card Payment :</h2>
+        <form onSubmit={paymentHandler} className={styles.form}>
+          <CardElement />
+          <div style={{ marginBlockEnd: '1.5em' }}></div>
+          <Button type='submit' disabled={loading}>
+            Pay Now
+          </Button>
+        </form>
       </div>
-      <Footer />
     </>
   );
 }

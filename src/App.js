@@ -8,6 +8,7 @@ import ResetPassword from './feature/auth/ResetPassword/ResetPassword';
 import Signup from './feature/auth/Signup/Signup';
 import NotFound from './pages/NotFound';
 import PaymentForm from './feature/payment/PaymentForm/PaymentForm';
+import PaymentPage from './feature/payment/PaymentPage/PaymentPage';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path='/email-login' element={<EmailLogin />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/payment' element={<PaymentForm />} />
+        <Route path='/payment' element={<PaymentPage />} />
 
         <Route path='*' element={<NotFound />} />
       </Routes>
