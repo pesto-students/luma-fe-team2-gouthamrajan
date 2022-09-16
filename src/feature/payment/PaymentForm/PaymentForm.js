@@ -18,7 +18,7 @@ export default function PaymentForm() {
 
   const fetchMeetingURL = async () => {
     // following url will change once deployed
-    const { url } = await fetch('localhost:5500/meeting').then((res) =>
+    const { url } = await fetch('http://localhost:5500/meeting').then((res) =>
       res.json()
     );
     return url;
@@ -37,9 +37,6 @@ export default function PaymentForm() {
         isClosable: true,
         status: 'warning',
       });
-      fetch('http://luma-webrtc.herokuapp.com/meeting')
-        .then((res) => res.json())
-        .then(console.log);
       return;
     }
 
