@@ -3,17 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 import Link from '../../../components/Link';
 import Button from '../../../components/Button';
-import { Alert } from '@mantine/core';
+import { Alert, Checkbox } from '@mantine/core';
 import { signInWithGooglePopup } from '../../../lib/firebase';
 import { useEffect } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 
 export default function Login() {
   const navigate = useNavigate();
-  const { currentUser, login } = useAuth();
+  const { currentUser, login, isExpert, setIsExpert } = useAuth();
 
   const logGoogleUser = async () => {
     await signInWithGooglePopup();
+    if (isExpert) {
+      navigate('/expert-dashboard');
+      return;
+    }
     navigate('/');
   };
 
@@ -35,7 +39,11 @@ export default function Login() {
       setError('');
       setLoading(true);
       await login('test@test.com', 'Test@123');
-      navigate('/');
+      if (isExpert) {
+        navigate('/expert-dashboard');
+      } else {
+        navigate('/');
+      }
     } catch (error) {
       setError('Failed to log in');
     }
@@ -66,6 +74,12 @@ export default function Login() {
           <Button onClick={handleDemoUserLogin} disabled={loading} color='gray'>
             Demo Login
           </Button>
+          <Checkbox
+            label='Login as Expert'
+            color='violet'
+            checked={isExpert}
+            onChange={(e) => setIsExpert(e.currentTarget.checked)}
+          />
           <Link to='/signup'>Don't have an account? Create One.</Link>
           <p>
             By continuing, you agree to Luma's Terms of Use. Read our Privacy

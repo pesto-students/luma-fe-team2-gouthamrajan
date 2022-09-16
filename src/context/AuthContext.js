@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import useSessionStorage from '../hooks/useSessionStorage';
 import {
   createAuthUserWithEmailAndPassword,
   onAuthStateChangedListener,
@@ -15,6 +16,7 @@ export function useAuth() {
 
 export default function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
+  const [isExpert, setIsExpert] = useSessionStorage('isExpert', false);
   const [loading, setLoading] = useState(true);
 
   const signup = async (email, password) => {
@@ -43,6 +45,8 @@ export default function AuthProvider({ children }) {
 
   const value = {
     currentUser,
+    isExpert,
+    setIsExpert,
     signup,
     login,
     logout,

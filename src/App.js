@@ -8,19 +8,36 @@ import ResetPassword from './feature/auth/ResetPassword/ResetPassword';
 import Signup from './feature/auth/Signup/Signup';
 import NotFound from './pages/NotFound';
 import PaymentPage from './feature/payment/PaymentPage/PaymentPage';
+import ExpertDashboard from './pages/ExpertDashboard/ExpertDashboard';
+import { useAuth } from './context/AuthContext';
 
 function App() {
+  const { isExpert, currentUser } = useAuth();
+
   return (
     <div className='App'>
       <Routes>
         <Route path='/' element={<Home />} replace />
         <Route path='/signup' element={<Signup />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/experts' element={<Expert />} />
         <Route path='/email-login' element={<EmailLogin />} />
         <Route path='/forgot-password' element={<ForgotPassword />} />
         <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/payment' element={<PaymentPage />} />
+
+        {/* user routes */}
+        {!isExpert && currentUser && (
+          <>
+            <Route path='/experts' element={<Expert />} />
+            <Route path='/payment' element={<PaymentPage />} />
+          </>
+        )}
+
+        {/* expert routes */}
+        {isExpert && (
+          <>
+            <Route path='/expert-dashboard' element={<ExpertDashboard />} />
+          </>
+        )}
 
         <Route path='*' element={<NotFound />} />
       </Routes>

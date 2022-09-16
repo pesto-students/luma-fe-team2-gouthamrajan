@@ -3,7 +3,7 @@ import { Input } from '@mantine/core';
 import Link from '../../../components/Link';
 import Button from '../../../components/Button';
 import { useAuth } from '../../../context/AuthContext';
-import { Alert } from '@mantine/core';
+import { Alert, Checkbox } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import styles from './EmailLogin.module.css';
 
@@ -12,7 +12,7 @@ export default function EmailLogin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, isExpert, setIsExpert } = useAuth();
   const navigate = useNavigate();
 
   // const resetForm = () => {};
@@ -25,7 +25,11 @@ export default function EmailLogin() {
       setError('');
       setLoading(true);
       await login(email, password);
-      navigate('/');
+      if (isExpert) {
+        navigate('/expert-dashboard');
+      } else {
+        navigate('/');
+      }
     } catch (error) {
       setError('Failed to log in');
     }
@@ -62,6 +66,12 @@ export default function EmailLogin() {
                 required
               />
             </Input.Wrapper>
+            <Checkbox
+              label='Login as Expert'
+              color='violet'
+              checked={isExpert}
+              onChange={(e) => setIsExpert(e.currentTarget.checked)}
+            />
             <Button type='submit' disabled={loading}>
               Login
             </Button>

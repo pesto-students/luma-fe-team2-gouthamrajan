@@ -7,7 +7,7 @@ import './Header.styles.css';
 
 export default function Header() {
   const navigate = useNavigate();
-  const { currentUser, logout } = useAuth();
+  const { currentUser, logout, isExpert, setIsExpert } = useAuth();
   const [error, setError] = useState('');
 
   const handleLogout = async () => {
@@ -15,7 +15,8 @@ export default function Header() {
 
     try {
       await logout();
-      navigate('/login');
+      navigate('/');
+      setIsExpert(false);
     } catch (error) {
       setError('Failed to logout');
     }
@@ -26,22 +27,35 @@ export default function Header() {
       <header className='header'>
         <div className='container header-container'>
           <a className='logo' onClick={() => navigate('/')}>
-            Luma
+            <img src='/logo.webp' alt='' aria-details='logo' width={100} />
           </a>
+          {/* <img src='/logo.webp' alt='' aria-details='logo' width={100} /> */}
 
           <nav className='navbar'>
             <ul role='list' className='nav-list'>
-              {/* <li className='navbar-item'>
-                <Link>Book slot</Link>
-              </li> */}
-              <li className='navbar-item'>
-                <Button onClick={() => navigate('/experts')}>
-                  Book a slot
-                </Button>
-              </li>
-              <li className='navbar-item'>
-                <Button onClick={() => navigate('/my-slots')}>My slots</Button>
-              </li>
+              {/* show below button only to user */}
+              {!isExpert ? (
+                <>
+                  <li className='navbar-item'>
+                    <Button onClick={() => navigate('/experts')}>
+                      Book a slot
+                    </Button>
+                  </li>
+                  <li className='navbar-item'>
+                    <Button onClick={() => navigate('/my-slots')}>
+                      My slots
+                    </Button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className='navbar-item'>
+                    <Button onClick={() => navigate('/expert-dashboard')}>
+                      Dashboard
+                    </Button>
+                  </li>
+                </>
+              )}
 
               {currentUser ? (
                 <>
