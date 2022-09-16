@@ -18,9 +18,10 @@ export default function PaymentForm() {
 
   const fetchMeetingURL = async () => {
     // following url will change once deployed
-    fetch('localhost:3030/meeting')
-      .then((res) => res.data)
-      .then(console.log);
+    const { url } = await fetch('localhost:5500/meeting').then((res) =>
+      res.json()
+    );
+    return url;
   };
 
   const paymentHandler = async (e) => {
@@ -89,6 +90,8 @@ export default function PaymentForm() {
           status: 'success',
           isClosable: true,
         });
+        const meetingUrl = await fetchMeetingURL();
+        console.log(meetingUrl);
       }
     }
   };
