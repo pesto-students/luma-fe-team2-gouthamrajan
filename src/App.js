@@ -10,6 +10,10 @@ import NotFound from './pages/NotFound';
 import PaymentPage from './feature/payment/PaymentPage/PaymentPage';
 import ExpertDashboard from './pages/ExpertDashboard/ExpertDashboard';
 import { useAuth } from './context/AuthContext';
+import ExpertHome from './pages/ExpertDashboard/ExpertHome';
+import ExpertProfile from './pages/ExpertDashboard/ExpertProfile';
+import AdminLogin from './feature/auth/AdminLogin/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 
 function App() {
   const { isExpert, currentUser } = useAuth();
@@ -35,8 +39,17 @@ function App() {
         {/* expert routes */}
         {isExpert && (
           <>
-            <Route path='/expert-dashboard' element={<ExpertDashboard />} />
+            <Route path='/expert-dashboard' element={<ExpertDashboard />}>
+              <Route index element={<ExpertHome />} />
+              <Route path='profile' element={<ExpertProfile />} />
+            </Route>
           </>
+        )}
+
+        {/* expert Route */}
+        <Route path='/admin-login' element={<AdminLogin />} />
+        {currentUser?.email === 'admin@luma.com' && (
+          <Route path='/admin-dashboard' element={<AdminDashboard />} />
         )}
 
         <Route path='*' element={<NotFound />} />

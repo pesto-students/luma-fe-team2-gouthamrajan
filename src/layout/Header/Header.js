@@ -38,6 +38,11 @@ export default function Header() {
                 <>
                   <li className='navbar-item'>
                     <Button onClick={() => navigate('/experts')}>
+                      Become a Expert
+                    </Button>
+                  </li>
+                  <li className='navbar-item'>
+                    <Button onClick={() => navigate('/experts')}>
                       Book a slot
                     </Button>
                   </li>

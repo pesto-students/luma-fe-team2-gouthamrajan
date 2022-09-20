@@ -4,8 +4,9 @@ import Input from '../../../components/Input';
 import Button from '../../../components/Button';
 import { useAuth } from '../../../context/AuthContext';
 import Link from '../../../components/Link';
-import { Alert } from '@mantine/core';
+import { Alert, Checkbox } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function Signup() {
   const [name, setName] = useState('');
@@ -16,6 +17,8 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const { signup } = useAuth();
   const navigate = useNavigate();
+
+  const { isExpert, setIsExpert } = useAuth();
 
   // const resetForm = () => {};
 
@@ -30,6 +33,15 @@ export default function Signup() {
       setError('');
       setLoading(true);
       await signup(email, password);
+      const response = await axios.post('http://localhost:5500/register', {
+        email,
+        displayName: name,
+        isExpert,
+      });
+      if (isExpert) {
+        navigate('/expert-dashboard');
+        return;
+      }
       navigate('/');
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
@@ -83,6 +95,12 @@ export default function Signup() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
+            />
+            <Checkbox
+              label='Signup as Expert'
+              color='violet'
+              checked={isExpert}
+              onChange={(e) => setIsExpert(e.currentTarget.checked)}
             />
             <Button type='submit' disabled={loading}>
               Signup
