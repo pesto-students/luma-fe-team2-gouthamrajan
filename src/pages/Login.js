@@ -57,7 +57,10 @@ function Login() {
   const onFinish = async (values) => {
     try {
       dispatch(showLoading());
-      const response = await axios.post('/login', values);
+      const response = await axios.post(
+        'http://ec2-35-89-126-181.us-west-2.compute.amazonaws.com:5500/login',
+        values
+      );
       console.log(response);
       dispatch(hideLoading());
       if (response.data.success) {
