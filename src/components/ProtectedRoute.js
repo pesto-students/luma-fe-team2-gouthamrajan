@@ -11,7 +11,7 @@ function ProtectedRoute(props) {
   const getUser = async()={
      try{
 
-        const response = await axios.post('http://localhost:5500/userDetails',{})
+        const response = await axios.post('https://luma-backend.onrender.com//userDetails',{})
      }
      catch(error){
 
@@ -43,42 +43,42 @@ function ProtectedRoute(props) {
 
 export default ProtectedRoute;
 */
-import React from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { reloadUserData, setUser } from "../redux/userSlice";
-import { showLoading, hideLoading } from "../redux/alertsSlice";
+import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { reloadUserData, setUser } from '../redux/userSlice';
+import { showLoading, hideLoading } from '../redux/alertsSlice';
 
 function ProtectedRoute(props) {
-  const { user,reloadUser } = useSelector((state) => state.user);
+  const { user, reloadUser } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const getUser = async () => {
     try {
-      dispatch(showLoading())
+      dispatch(showLoading());
       const response = await axios.post(
-        "http://localhost:5500/userDetails",
-        { token: localStorage.getItem("token") },
+        'https://luma-backend.onrender.com//userDetails',
+        { token: localStorage.getItem('token') },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
       );
       dispatch(hideLoading());
       if (response.data.success) {
         dispatch(setUser(response.data.data));
-        dispatch(reloadUserData(false))
+        dispatch(reloadUserData(false));
       } else {
-        localStorage.clear()
-        navigate("/login");
+        localStorage.clear();
+        navigate('/login');
       }
     } catch (error) {
       dispatch(hideLoading());
-      localStorage.clear()
-      navigate("/login");
+      localStorage.clear();
+      navigate('/login');
     }
   };
 
@@ -86,12 +86,12 @@ function ProtectedRoute(props) {
     if (!user || reloadUser) {
       getUser();
     }
-  }, [user,reloadUser]);
+  }, [user, reloadUser]);
 
-  if (localStorage.getItem("token")) {
+  if (localStorage.getItem('token')) {
     return props.children;
   } else {
-    return <Navigate to="/login" />;
+    return <Navigate to='/login' />;
   }
 }
 

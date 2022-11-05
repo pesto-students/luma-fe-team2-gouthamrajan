@@ -13,7 +13,7 @@ export default function Signup() {
           const registerUser = async()=>{
            setIsLoading(true)
            try{
-            const response = await axios.post('http://localhost:5500/register',values)
+            const response = await axios.post('https://luma-backend.onrender.com//register',values)
             console.log(response,response.data)
             if(response.data.success){
                toast.success(response.data.message)
@@ -78,7 +78,10 @@ function Register() {
   const onFinish = async (values) => {
     try {
       dispatch(showLoading());
-      const response = await axios.post('/register', values);
+      const response = await axios.post(
+        'https://luma-backend.onrender.com/register',
+        values
+      );
       dispatch(hideLoading());
       if (response.data.success) {
         toast.success(response.data.message);

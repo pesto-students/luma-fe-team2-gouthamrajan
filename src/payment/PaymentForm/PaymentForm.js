@@ -5,13 +5,12 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useNavigate } from 'react-router-dom';
 import styles from './PaymentForm.module.css';
 // import { useToast } from '@chakra-ui/react';
-import { toast } from "react-hot-toast";
+import { toast } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 export default function PaymentForm() {
   const stripe = useStripe();
   const elements = useElements();
-  
- 
+
   const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
@@ -19,9 +18,9 @@ export default function PaymentForm() {
 
   const fetchMeetingURL = async () => {
     // following url will change once deployed
-    const { url } = await fetch('http://localhost:5500/meeting').then((res) =>
-      res.json()
-    );
+    const { url } = await fetch(
+      'https://luma-backend.onrender.com//meeting'
+    ).then((res) => res.json());
     return url;
   };
 

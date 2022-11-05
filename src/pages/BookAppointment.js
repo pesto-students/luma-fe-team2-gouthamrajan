@@ -1,12 +1,12 @@
-import { Button, Col, DatePicker, Form, Input, Row, TimePicker } from "antd";
-import React, { useEffect, useState } from "react";
-import Layout from "../components/Layout";
-import { useDispatch, useSelector } from "react-redux";
-import { showLoading, hideLoading } from "../redux/alertsSlice";
-import { toast } from "react-hot-toast";
-import axios from "axios";
-import moment from "moment";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Button, Col, DatePicker, Form, Input, Row, TimePicker } from 'antd';
+import React, { useEffect, useState } from 'react';
+import Layout from '../components/Layout';
+import { useDispatch, useSelector } from 'react-redux';
+import { showLoading, hideLoading } from '../redux/alertsSlice';
+import { toast } from 'react-hot-toast';
+import axios from 'axios';
+import moment from 'moment';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 function BookAppointment() {
   const [isAvailable, setIsAvailable] = useState(false);
   const navigate = useNavigate();
@@ -20,13 +20,13 @@ function BookAppointment() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "/get-expert-info-by-id",
+        'https://luma-backend.onrender.com/get-expert-info-by-id',
         {
           expertId: params.expertId,
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
       );
@@ -44,7 +44,7 @@ function BookAppointment() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "/check-booking-avilability",
+        'https://luma-backend.onrender.com/check-booking-avilability',
         {
           expertId: params.expertId,
           date: date,
@@ -52,7 +52,7 @@ function BookAppointment() {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
       );
@@ -64,18 +64,17 @@ function BookAppointment() {
         toast.error(response.data.message);
       }
     } catch (error) {
-      toast.error("Error booking appointment");
+      toast.error('Error booking appointment');
       dispatch(hideLoading());
     }
   };
-
 
   const bookNow = async () => {
     setIsAvailable(false);
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        "/book-appointment",
+        'https://luma-backend.onrender.com/book-appointment',
         {
           expertId: params.expertId,
           userId: user._id,
@@ -86,19 +85,18 @@ function BookAppointment() {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         }
       );
 
       dispatch(hideLoading());
       if (response.data.success) {
-
         toast.success(response.data.message);
-        navigate('/appointments')
+        navigate('/appointments');
       }
     } catch (error) {
-      toast.error("Error booking appointment");
+      toast.error('Error booking appointment');
       dispatch(hideLoading());
     }
   };
@@ -107,80 +105,79 @@ function BookAppointment() {
   }, []);
   return (
     <Layout>
-      {expert &&
-        (
-          <div>
-            <h1 className="page-title">
-              {expert.firstName} {expert.lastName}
-            </h1>
-            <hr />
-            <Row gutter={20} className="mt-5" align="middle">
-              <Col span={8} sm={24} xs={24} lg={8}>
-                <img
-                  src="https://thumbs.dreamstime.com/b/finger-press-book-now-button-booking-reservation-icon-online-149789867.jpg"
-                  alt=""
-                  width="100%"
-                  height='400'
+      {expert && (
+        <div>
+          <h1 className='page-title'>
+            {expert.firstName} {expert.lastName}
+          </h1>
+          <hr />
+          <Row gutter={20} className='mt-5' align='middle'>
+            <Col span={8} sm={24} xs={24} lg={8}>
+              <img
+                src='https://thumbs.dreamstime.com/b/finger-press-book-now-button-booking-reservation-icon-online-149789867.jpg'
+                alt=''
+                width='100%'
+                height='400'
+              />
+            </Col>
+            <Col span={8} sm={24} xs={24} lg={8}>
+              <h1 className='normal-text'>
+                <b>Timings :</b> {expert.timings[0]} - {expert.timings[1]}
+              </h1>
+              <p>
+                <b>Phone Number : </b>
+                {expert.phoneNumber}
+              </p>
+              <p>
+                <b>Address : </b>
+                {expert.address}
+              </p>
+              <p>
+                <b>Fee per Visit : </b>
+                {expert.feePerConsultation}
+              </p>
+              <p>
+                <b>Website : </b>
+                {expert.website}
+              </p>
+              <div className='d-flex flex-column pt-2 mt-2'>
+                <DatePicker
+                  format='DD-MM-YYYY'
+                  onChange={(value) => {
+                    setDate(moment(value).format('DD-MM-YYYY'));
+                    setIsAvailable(false);
+                  }}
                 />
-              </Col>
-              <Col span={8} sm={24} xs={24} lg={8}>
-                <h1 className="normal-text">
-                  <b>Timings :</b> {expert.timings[0]} - {expert.timings[1]}
-                </h1>
-                <p>
-                  <b>Phone Number : </b>
-                  {expert.phoneNumber}
-                </p>
-                <p>
-                  <b>Address : </b>
-                  {expert.address}
-                </p>
-                <p>
-                  <b>Fee per Visit : </b>
-                  {expert.feePerConsultation}
-                </p>
-                <p>
-                  <b>Website : </b>
-                  {expert.website}
-                </p>
-                <div className="d-flex flex-column pt-2 mt-2">
-                  <DatePicker
-                    format="DD-MM-YYYY"
-                    onChange={(value) => {
-                      setDate(moment(value).format("DD-MM-YYYY"));
-                      setIsAvailable(false);
-                    }}
-                  />
-                  <TimePicker
-                    format="HH:mm"
-                    className="mt-3"
-                    onChange={(value) => {
-                      setIsAvailable(false);
-                      setTime(moment(value).format("HH:mm"));
-                    }}
-                  />
-                  {!isAvailable && <Button
-                    className="primary-button mt-3 full-width-button"
+                <TimePicker
+                  format='HH:mm'
+                  className='mt-3'
+                  onChange={(value) => {
+                    setIsAvailable(false);
+                    setTime(moment(value).format('HH:mm'));
+                  }}
+                />
+                {!isAvailable && (
+                  <Button
+                    className='primary-button mt-3 full-width-button'
                     onClick={checkAvailability}
                   >
                     Check Availability
-                  </Button>}
+                  </Button>
+                )}
 
-
-                  {isAvailable && (
-                    <Button
-                      className="primary-button mt-3 full-width-button"
-                      onClick={bookNow}
-                    >
-                      Book Now
-                    </Button>
-                  )}
-
-                </div>
-              </Col>
-            </Row>
-          </div>
-        )}
+                {isAvailable && (
+                  <Button
+                    className='primary-button mt-3 full-width-button'
+                    onClick={bookNow}
+                  >
+                    Book Now
+                  </Button>
+                )}
+              </div>
+            </Col>
+          </Row>
+        </div>
+      )}
     </Layout>
   );
 }

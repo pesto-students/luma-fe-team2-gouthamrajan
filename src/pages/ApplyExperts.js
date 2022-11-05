@@ -1,57 +1,56 @@
-import { Col, Form, Input, Row, TimePicker } from "antd";
-import DatePicker from "react-datepicker";
-import Layout from "../components/Layout";
+import { Col, Form, Input, Row, TimePicker } from 'antd';
+import DatePicker from 'react-datepicker';
+import Layout from '../components/Layout';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import { showLoading, hideLoading } from '../redux/alertsSlice'
-import { toast } from "react-hot-toast";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import ExpertForm from "../components/ExpertForm";
-import moment from "moment";
+import { useDispatch, useSelector } from 'react-redux';
+import { showLoading, hideLoading } from '../redux/alertsSlice';
+import { toast } from 'react-hot-toast';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import ExpertForm from '../components/ExpertForm';
+import moment from 'moment';
 function ApplyExperts() {
-    const dispatch = useDispatch();
-    const { user } = useSelector((state) => state.user);
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
-
-    const onFinish = async (values) => {
-
-      try {
-            console.log("ApplyExperts", values, "user", user)
-            dispatch(showLoading())
-            const response = await axios.post('http://localhost:5500/apply-expert', {
-                ...values,
-                userId: user._Id,
-                timings: [
-                    moment(values.timings[0]).format("HH:mm"),
-                    moment(values.timings[1]).format("HH:mm"),
-                ]
-            }, {
-
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                },
-
-            })
-            dispatch(hideLoading())
-            if (response.data.success) {
-                toast.success(response.data.message)
-                navigate("/")
-            } else {
-                toast.error(response.data.message)
-            }
-        } catch (error) {
-            dispatch(hideLoading())
-            console.log(error.message)
-            //console.log(response.data.message)
-            toast.error("Something went wrong")
+  const onFinish = async (values) => {
+    try {
+      console.log('ApplyExperts', values, 'user', user);
+      dispatch(showLoading());
+      const response = await axios.post(
+        'https://luma-backend.onrender.com/apply-expert',
+        {
+          ...values,
+          userId: user._Id,
+          timings: [
+            moment(values.timings[0]).format('HH:mm'),
+            moment(values.timings[1]).format('HH:mm'),
+          ],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
         }
-
+      );
+      dispatch(hideLoading());
+      if (response.data.success) {
+        toast.success(response.data.message);
+        navigate('/');
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      console.log(error.message);
+      //console.log(response.data.message)
+      toast.error('Something went wrong');
     }
-    return (
-        <Layout>
-           {/* <h1 className="page-title">Apply Expert</h1>
+  };
+  return (
+    <Layout>
+      {/* <h1 className="page-title">Apply Expert</h1>
             <hr />
             <Form layout='vertical' onFinish={onFinish}>
                 <h1 className="card-title mt-3">Personal Information</h1>
@@ -120,9 +119,9 @@ function ApplyExperts() {
 
     </Form>*/}
 
-            <ExpertForm onFinish={onFinish} />
-        </Layout>
-    );
+      <ExpertForm onFinish={onFinish} />
+    </Layout>
+  );
 }
 
 export default ApplyExperts;
