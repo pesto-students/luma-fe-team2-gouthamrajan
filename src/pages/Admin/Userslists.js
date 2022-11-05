@@ -12,7 +12,7 @@ function Userslists() {
     try {
       dispatch(showLoading());
       const response = await axios.get(
-        'https://luma-backend.onrender.com//users',
+        'https://luma-backend.onrender.com/users',
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,

@@ -33,7 +33,7 @@ function ExpertsList() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        '/change-expert-account-status',
+        'https://luma-backend.onrender.com/change-expert-account-status',
         { ExpertId: record._id, userId: record.userId, status: status },
         {
           headers: {
