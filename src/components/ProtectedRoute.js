@@ -59,7 +59,7 @@ function ProtectedRoute(props) {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        'https://luma-backend.onrender.com//userDetails',
+        'https://luma-backend.onrender.com/userDetails',
         { token: localStorage.getItem('token') },
         {
           headers: {
