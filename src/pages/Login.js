@@ -58,9 +58,10 @@ function Login() {
     try {
       dispatch(showLoading());
       const response = await axios.post(
-        'http://ec2-35-89-126-181.us-west-2.compute.amazonaws.com:5500/login',
+        'https://luma-backend.onrender.com/login',
         values
       );
+      console.log(values);
       console.log(response);
       dispatch(hideLoading());
       if (response.data.success) {
