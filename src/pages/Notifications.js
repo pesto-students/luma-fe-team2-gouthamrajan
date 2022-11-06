@@ -87,7 +87,7 @@ function Notifications() {
           {user?.seenNotifications.map((notification) => (
             <div
               className='card p-2 mt-2'
-              onClick={() => navigate(notification.onClickPath)}
+              // onClick={() => navigate(notification.onClickPath)}
             >
               <div className='card-text'>{notification.message}</div>
             </div>

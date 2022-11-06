@@ -36,13 +36,17 @@ function Home() {
   }, []);
   return (
     <Layout>
-      <Row gutter={30}>
-        {experts.map((expert) => (
-          <Col span={8} xs={24} sm={24} lg={8} key={expert.id}>
-            <Expert expert={expert} />
-          </Col>
-        ))}
-      </Row>
+      {experts.length === 0 ? (
+        <h2>No experts are available</h2>
+      ) : (
+        <Row gutter={30}>
+          {experts.map((expert) => (
+            <Col span={8} xs={24} sm={24} lg={8} key={expert.id}>
+              <Expert expert={expert} />
+            </Col>
+          ))}
+        </Row>
+      )}
     </Layout>
   );
 }
