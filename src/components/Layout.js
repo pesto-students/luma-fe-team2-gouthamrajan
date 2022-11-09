@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../layout.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Badge } from 'antd';
 import { setUser } from '../redux/userSlice';
 
@@ -104,7 +104,7 @@ function Layout({ children }) {
               className={`d-flex menu-item `}
               onClick={() => {
                 localStorage.clear();
-                setUser(null);
+                dispatch(setUser(null));
                 navigate('/login');
               }}
             >
