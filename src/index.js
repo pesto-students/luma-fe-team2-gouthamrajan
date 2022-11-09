@@ -1,22 +1,21 @@
 import React from 'react';
+import 'antd/dist/antd.min.css';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './app/store';
 import './index.css';
+import { Provider } from "react-redux";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import AuthProvider from './context/AuthContext';
-
+import store from "./redux/store"
+import { Elements } from '@stripe/react-stripe-js';
+import { stripe } from './lib/stripe';
+import {queryClient,QueryClientProvider} from '@tanstack/react-query'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <Provider store={store}>
+  <Elements stripe={stripe}>
+   <App />
+   </Elements>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
