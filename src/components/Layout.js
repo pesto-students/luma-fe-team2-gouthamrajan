@@ -105,7 +105,6 @@ function Layout({ children }) {
               className={`d-flex menu-item `}
               onClick={() => {
                 localStorage.clear();
-                dispatch(setUser(null));
                 navigate('/login');
               }}
             >
