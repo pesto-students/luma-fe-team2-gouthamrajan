@@ -1,48 +1,3 @@
-/*import React from 'react';
-import {Navigate, useNavigate} from "react-router-dom";
-import {useEffect} from "react";
-import {useSelector} from "react-redux"
-import axios from 'axios';
-function ProtectedRoute(props) {
- const {user} = useSelector((state)=>state.user)
- const navigate = useNavigate()
- const getUser=async()=>{
-  const navigate = useNavigate()
-  const getUser = async()={
-     try{
-
-        const response = await axios.post('https://luma-backend.onrender.com//userDetails',{})
-     }
-     catch(error){
-
-
-
-
-     }
-
-
-  }
-
-}
-
-   useEffect(() => {
-      if(!user) {
-         getUser()
-      }
-
-   }, [user]);
-
-
-    if(localStorage.getItem("token")){
-        return props.children
-    }else{
-         return <Navigate to="/login" />;
-    }
-   
-}
-
-export default ProtectedRoute;
-*/
 import React from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -70,7 +25,6 @@ function ProtectedRoute(props) {
       dispatch(hideLoading());
       if (response.data.success) {
         dispatch(setUser(response.data.data));
-        dispatch(reloadUserData(false));
       } else {
         localStorage.clear();
         navigate('/login');

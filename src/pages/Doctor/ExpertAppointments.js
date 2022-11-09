@@ -48,7 +48,7 @@ function ExpertAppointments(props) {
         getAppointmentsData();
       }
     } catch (error) {
-      toast.error('Error changing doctor account status');
+      toast.error('Error changing expert account status');
       dispatch(hideLoading());
     }
   };
