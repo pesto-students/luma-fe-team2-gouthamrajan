@@ -7,7 +7,7 @@ import { setUser } from '../redux/userSlice';
 
 function Layout({ children }) {
   const [collapsed, setCollapsed] = useState(false);
-  const { user, setUser } = useSelector((state) => state.user);
+  const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
