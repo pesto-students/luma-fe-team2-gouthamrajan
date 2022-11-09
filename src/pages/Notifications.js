@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { hideLoading, showLoading } from '../redux/alertsSlice';
-import { setUser, reloadUserData } from '../redux/userSlice';
+import { setUser } from '../redux/userSlice';
 import { notification, Tabs } from 'antd';
 function Notifications() {
   const { user } = useSelector((state) => state.user);
