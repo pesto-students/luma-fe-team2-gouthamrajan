@@ -106,6 +106,7 @@ function Login() {
             className='primary-button my-2 full-width-button'
             htmlType='submit'
             ref={formRef}
+            onClick={validate}
           >
             LOGIN
           </Button>
