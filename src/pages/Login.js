@@ -34,6 +34,31 @@ function Login() {
     }
   };
 
+  const demoLogin = async () => {
+    try {
+      dispatch(showLoading());
+      const response = await axios.post(
+        'https://luma-backend.onrender.com/login',
+        {
+          email: 'demo@demo.com',
+          password: '12345678',
+        }
+      );
+      dispatch(hideLoading());
+      if (response.data.success) {
+        toast.success(response.data.message);
+        console.log(response.data.data);
+        localStorage.setItem('token', response.data.data);
+        navigate('/');
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      toast.error('Something went wrong');
+    }
+  };
+
   return (
     <div className='authentication'>
       <div className='authentication-form card p-3'>
@@ -51,6 +76,14 @@ function Login() {
             htmlType='submit'
           >
             LOGIN
+          </Button>
+
+          <Button
+            className='primary-button my-2 full-width-button'
+            htmlType='submit'
+            onClick={demoLogin}
+          >
+            Demo Login
           </Button>
 
           <Link to='/register' className='anchor mt-2'>
