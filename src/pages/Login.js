@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { hideLoading, showLoading } from '../redux/alertsSlice';
+import { useRef } from 'react';
+import { useEffect } from 'react';
 
 function Login() {
   // const {loading} = useSelector(state => state.alert)
@@ -57,11 +59,27 @@ function Login() {
     }
   };
 
+  const formRef = useRef();
+  const passwordRef = useRef();
+
+  useEffect(() => {
+    formRef.current.addEventListener('submit', (event) => {
+      if (passwordRef.current.validity.patternMismatch) {
+        passwordRef.current.setCustomValidity(
+          'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number'
+        );
+        passwordRef.current.reportValidity();
+      } else {
+        passwordRef.current.setCustomValidity('');
+      }
+    });
+  }, []);
+
   return (
     <div className='authentication'>
       <div className='authentication-form card p-3'>
         <h1 className='card-title'>Welcome Back</h1>
-        <Form layout='vertical' onFinish={onFinish}>
+        <Form layout='vertical' onFinish={onFinish} ref={formRef}>
           <Form.Item label='Email' name='email'>
             <Input placeholder='Email' />
           </Form.Item>
@@ -70,6 +88,7 @@ function Login() {
               placeholder='Password'
               type='password'
               pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$'
+              ref={passwordRef}
             />
           </Form.Item>
 
