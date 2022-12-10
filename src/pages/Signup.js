@@ -38,10 +38,14 @@ function Register() {
             <Input placeholder='Name' />
           </Form.Item>
           <Form.Item label='Email' name='email'>
-            <Input placeholder='Email' />
+            <Input placeholder='Email' type='email' />
           </Form.Item>
           <Form.Item label='Password' name='password'>
-            <Input placeholder='Password' type='password' />
+            <Input
+              placeholder='Password'
+              type='password'
+              pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$'
+            />
           </Form.Item>
 
           <Button

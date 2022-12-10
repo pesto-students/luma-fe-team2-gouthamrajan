@@ -66,7 +66,11 @@ function Login() {
             <Input placeholder='Email' />
           </Form.Item>
           <Form.Item label='Password' name='password'>
-            <Input placeholder='Password' type='password' />
+            <Input
+              placeholder='Password'
+              type='password'
+              pattern='^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$'
+            />
           </Form.Item>
 
           <Button
