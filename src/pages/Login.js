@@ -78,8 +78,9 @@ function Login() {
 
           <Button
             className='primary-button my-2 full-width-button'
-            htmlType='submit'
+            htmlType='button'
             onClick={demoLogin}
+            type='ghost'
           >
             Demo Login
           </Button>
