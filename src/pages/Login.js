@@ -63,7 +63,7 @@ function Login() {
   const passwordRef = useRef();
 
   useEffect(() => {
-    formRef.current.addEventListener('submit', (event) => {
+    formRef.current.addEventListener('click', (event) => {
       if (passwordRef.current.validity.patternMismatch) {
         passwordRef.current.setCustomValidity(
           'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number'
@@ -79,7 +79,7 @@ function Login() {
     <div className='authentication'>
       <div className='authentication-form card p-3'>
         <h1 className='card-title'>Welcome Back</h1>
-        <Form layout='vertical' onFinish={onFinish} ref={formRef}>
+        <Form layout='vertical' onFinish={onFinish}>
           <Form.Item label='Email' name='email'>
             <Input placeholder='Email' />
           </Form.Item>
@@ -95,6 +95,7 @@ function Login() {
           <Button
             className='primary-button my-2 full-width-button'
             htmlType='submit'
+            ref={formRef}
           >
             LOGIN
           </Button>
