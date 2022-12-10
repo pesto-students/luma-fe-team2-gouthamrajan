@@ -59,21 +59,31 @@ function Login() {
     }
   };
 
-  const formRef = useRef();
-  const passwordRef = useRef();
+  const formRef = useRef(null);
+  const passwordRef = useRef(null);
 
-  useEffect(() => {
-    formRef.current.addEventListener('click', (event) => {
-      if (passwordRef.current.validity.patternMismatch) {
-        passwordRef.current.setCustomValidity(
-          'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number'
-        );
-        passwordRef.current.reportValidity();
-      } else {
-        passwordRef.current.setCustomValidity('');
-      }
-    });
-  }, []);
+  const validate = () => {
+    if (passwordRef.current.validity.patternMismatch) {
+      passwordRef.current.setCustomValidity(
+        'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number'
+      );
+      passwordRef.current.reportValidity();
+    } else {
+      passwordRef.current.setCustomValidity('');
+    }
+  };
+  // useEffect(() => {
+  //   formRef.current.addEventListener('click', (event) => {
+  //     if (passwordRef.current.validity.patternMismatch) {
+  //       passwordRef.current.setCustomValidity(
+  //         'Minimum eight characters, at least one uppercase letter, one lowercase letter and one number'
+  //       );
+  //       passwordRef.current.reportValidity();
+  //     } else {
+  //       passwordRef.current.setCustomValidity('');
+  //     }
+  //   });
+  // }, []);
 
   return (
     <div className='authentication'>
