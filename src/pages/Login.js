@@ -50,8 +50,6 @@ function Login() {
         console.log(response.data.data);
         localStorage.setItem('token', response.data.data);
         navigate('/');
-      } else {
-        toast.error(response.data.message);
       }
     } catch (error) {
       dispatch(hideLoading());
